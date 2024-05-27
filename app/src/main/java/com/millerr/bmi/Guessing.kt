@@ -13,12 +13,24 @@ fun main() {
     var num: Int = 0
 //    while (num != secret) {
     var bingo = false
-    for (i in 1..3){
+    for (i in 1..3) {
         print("please enter a number(1-10)：")
         val input = readLine()
         num = input?.toIntOrNull() ?: 0
         println("The number you entered: $num")
-        if (num < secret) {
+        var message = when {
+            num < secret -> "bigger"
+            num > secret -> "smaller"
+            else -> {
+                bingo = true
+                "You got it"
+            }
+        }
+        println(message)
+        if (bingo) {
+            break
+        }
+        /*if (num < secret) {
             println("bigger")
         } else if (num > secret) {
             println("smaller")
@@ -26,7 +38,7 @@ fun main() {
             println("You got it!")
             bingo = true
             break
-        }
+        }*/
     }
     if (!bingo) println("Fail, the Secret is $secret")
 }
